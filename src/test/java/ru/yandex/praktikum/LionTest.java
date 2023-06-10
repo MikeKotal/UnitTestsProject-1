@@ -16,8 +16,6 @@ import static org.mockito.ArgumentMatchers.anyString;
 public class LionTest {
 
     @Mock
-    Lion lion;
-    @Mock
     Feline feline;
     Lion newLion;
 
@@ -26,16 +24,12 @@ public class LionTest {
         newLion = new Lion("Самец", feline);
         Mockito.when(feline.getKittens()).thenReturn(1);
         Assert.assertEquals(1, newLion.getKittens());
-        lion.getKittens();
-        Mockito.verify(lion, Mockito.times(1)).getKittens();
     }
 
     @Test
     public void doesHaveManeTest() throws Exception {
         newLion = new Lion("Самка", feline);
         assertFalse(newLion.doesHaveMane());
-        lion.doesHaveMane();
-        Mockito.verify(lion, Mockito.times(1)).doesHaveMane();
     }
 
     @Test
@@ -43,8 +37,11 @@ public class LionTest {
         newLion = new Lion("Самец", feline);
         List<String> foods = List.of("Животные", "Птицы", "Рыба");
         Mockito.when(feline.getFood(anyString())).thenReturn(foods);
-        Assert.assertArrayEquals(foods.toArray(), newLion.getFood().toArray());
-        lion.getFood();
-        Mockito.verify(lion, Mockito.times(1)).getFood();
+        Assert.assertEquals(foods, newLion.getFood());
+    }
+
+    @Test(expected = Exception.class)
+    public void negativeTestConstructorConditions() throws Exception {
+        newLion = new Lion("Нейтральный", feline);
     }
 }

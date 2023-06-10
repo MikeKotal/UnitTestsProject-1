@@ -13,8 +13,6 @@ import java.util.List;
 public class CatTest {
 
     @Mock
-    Cat cat;
-    @Mock
     Feline feline;
     Cat newCat;
 
@@ -22,8 +20,6 @@ public class CatTest {
     public void getSoundTest() {
         newCat = new Cat(feline);
         Assert.assertEquals("Мяу", newCat.getSound());
-        cat.getSound();
-        Mockito.verify(cat, Mockito.times(1)).getSound();
     }
 
     @Test
@@ -31,9 +27,6 @@ public class CatTest {
         newCat = new Cat(feline);
         List<String> foods = List.of("Животные", "Птицы", "Рыба");
         Mockito.when(feline.eatMeat()).thenReturn(foods);
-        Assert.assertArrayEquals(foods.toArray(), newCat.getFood().toArray());
-        Mockito.verify(feline, Mockito.times(1)).eatMeat();
-        cat.getFood();
-        Mockito.verify(cat, Mockito.times(1)).getFood();
+        Assert.assertEquals(foods, newCat.getFood());
     }
 }

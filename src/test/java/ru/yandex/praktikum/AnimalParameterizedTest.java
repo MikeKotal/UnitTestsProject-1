@@ -18,8 +18,7 @@ public class AnimalParameterizedTest {
 
     private final String animalKind;
     private final List<String> foods;
-    @Spy
-    Feline feline;
+    Feline feline = new Feline();
 
     public AnimalParameterizedTest(String animalKind, List<String> foods) {
         this.animalKind = animalKind;
@@ -28,26 +27,14 @@ public class AnimalParameterizedTest {
 
     @Parameterized.Parameters
     public static Object[][] getLionInfo() {
-        return new Object[][] {
+        return new Object[][]{
                 {"Травоядное", List.of("Трава", "Различные растения")},
-                {"Хищник", List.of("Животные", "Птицы", "Рыба")},
-                {"Млекопитающее", List.of("Молоко")}
+                {"Хищник", List.of("Животные", "Птицы", "Рыба")}
         };
     }
 
-    @Before
-    public void init() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     @Test
-    public void getFoodCheckConditionsTest() {
-        String exception = "Неизвестный вид животного, используйте значение Травоядное или Хищник";
-        try {
-            Assert.assertArrayEquals(foods.toArray(), feline.getFood(animalKind).toArray());
-            Mockito.verify(feline, Mockito.times(1)).getFood(anyString());
-        } catch (Exception e) {
-            Assert.assertEquals(exception, e.getMessage());
-        }
+    public void getFoodCheckConditionsTest() throws Exception {
+        Assert.assertEquals(foods, feline.getFood(animalKind));
     }
 }

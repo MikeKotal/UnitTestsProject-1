@@ -19,36 +19,31 @@ public class FelineTest {
 
     @Spy
     Feline feline;
-    @Mock
     Feline newFeline;
-    @Mock
-    Animal animal;
 
     @Test
     public void eatMeatTest() throws Exception {
         List<String> foods = List.of("Животные", "Птицы", "Рыба");
-        Assert.assertArrayEquals(foods.toArray(), feline.eatMeat().toArray());
-        Mockito.verify(feline, Mockito.times(1)).eatMeat();
+        Assert.assertEquals(foods, feline.eatMeat());
         Mockito.verify(feline, Mockito.times(1)).getFood("Хищник");
     }
 
     @Test
     public void getFamilyTest() {
-        Assert.assertEquals("Кошачьи", feline.getFamily());
-        Mockito.verify(feline, Mockito.times(1)).getFamily();
+        newFeline = new Feline();
+        Assert.assertEquals("Кошачьи", newFeline.getFamily());
     }
 
     @Test
     public void getKittensTest() {
         Mockito.when(feline.getKittens(1)).thenReturn(1);
         Assert.assertEquals(1, feline.getKittens());
-        Mockito.verify(feline, Mockito.times(1)).getKittens();
         Mockito.verify(feline, Mockito.times(1)).getKittens(1);
     }
 
     @Test
     public void getKittensOneKittenReturn() {
-        Assert.assertEquals(1, feline.getKittens(1));
-        Mockito.verify(feline, Mockito.times(1)).getKittens(anyInt());
+        newFeline = new Feline();
+        Assert.assertEquals(1, newFeline.getKittens(1));
     }
 }

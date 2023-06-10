@@ -23,10 +23,9 @@ public class LionParameterizedTest {
 
     @Parameterized.Parameters
     public static Object[][] getLionInfo() {
-        return new Object[][] {
+        return new Object[][]{
                 {"Самец", true},
-                {"Самка", false},
-                {"Тест", false}
+                {"Самка", false}
         };
     }
 
@@ -36,13 +35,8 @@ public class LionParameterizedTest {
     }
 
     @Test
-    public void doesHaveManeCheckConstructorConditionsTest() {
-        String exception = "Используйте допустимые значения пола животного - самец или самка";
-        try {
-            Lion lion = new Lion(sex, feline);
-            Assert.assertEquals(expectedHasMane, lion.doesHaveMane());
-        } catch (Exception e) {
-            Assert.assertEquals(exception, e.getMessage());
-        }
+    public void doesHaveManeCheckConstructorConditionsTest() throws Exception {
+        Lion lion = new Lion(sex, feline);
+        Assert.assertEquals(expectedHasMane, lion.doesHaveMane());
     }
 }
