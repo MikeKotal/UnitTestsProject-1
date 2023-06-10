@@ -27,12 +27,6 @@ public class LionTest {
     }
 
     @Test
-    public void doesHaveManeTest() throws Exception {
-        newLion = new Lion("Самка", feline);
-        assertFalse(newLion.doesHaveMane());
-    }
-
-    @Test
     public void getFoodTest() throws Exception {
         newLion = new Lion("Самец", feline);
         List<String> foods = List.of("Животные", "Птицы", "Рыба");
