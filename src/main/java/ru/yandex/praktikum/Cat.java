@@ -1,10 +1,10 @@
-package com.example;
+package ru.yandex.praktikum;
 
 import java.util.List;
 
 public class Cat {
 
-    Predator predator;
+    private Predator predator;
 
     public Cat(Feline feline) {
         this.predator = feline;
