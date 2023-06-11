@@ -18,7 +18,7 @@ public class AnimalParameterizedTest {
 
     private final String animalKind;
     private final List<String> foods;
-    Feline feline = new Feline();
+    Animal animal = new Feline();
 
     public AnimalParameterizedTest(String animalKind, List<String> foods) {
         this.animalKind = animalKind;
@@ -26,7 +26,7 @@ public class AnimalParameterizedTest {
     }
 
     @Parameterized.Parameters
-    public static Object[][] getLionInfo() {
+    public static Object[][] getFoodInfo() {
         return new Object[][]{
                 {"Травоядное", List.of("Трава", "Различные растения")},
                 {"Хищник", List.of("Животные", "Птицы", "Рыба")}
@@ -35,6 +35,6 @@ public class AnimalParameterizedTest {
 
     @Test
     public void getFoodCheckConditionsTest() throws Exception {
-        Assert.assertEquals(foods, feline.getFood(animalKind));
+        Assert.assertEquals(foods, animal.getFood(animalKind));
     }
 }
