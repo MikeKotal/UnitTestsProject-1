@@ -1,4 +1,4 @@
-package ru.yandex.praktikum;
+package feline_research;
 
 import org.junit.Assert;
 import org.junit.Before;

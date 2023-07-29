@@ -1,6 +1,5 @@
-package ru.yandex.praktikum;
+package feline_research;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -23,7 +22,7 @@ public class LionTest {
     public void getKittensTest() throws Exception {
         newLion = new Lion("Самец", feline);
         Mockito.when(feline.getKittens()).thenReturn(1);
-        Assert.assertEquals(1, newLion.getKittens());
+        assertEquals(1, newLion.getKittens());
     }
 
     @Test
@@ -31,7 +30,7 @@ public class LionTest {
         newLion = new Lion("Самец", feline);
         List<String> foods = List.of("Животные", "Птицы", "Рыба");
         Mockito.when(feline.getFood(anyString())).thenReturn(foods);
-        Assert.assertEquals(foods, newLion.getFood());
+        assertEquals(foods, newLion.getFood());
     }
 
     @Test(expected = Exception.class)
